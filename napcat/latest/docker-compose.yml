@@ -1,0 +1,24 @@
+services:
+  napcat:
+    image: mlikiowa/napcat-docker:latest
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: ${CPUS}
+          memory: ${MEMORY_LIMIT}
+    ports:
+      - ${HOST_IP}:${WEBUI_PORT}:6099
+      - ${HOST_IP}:${WS_PORT}:3001
+    volumes:
+      - ${APP_PATH}/qq:/app/.config/QQ
+      - ${APP_PATH}/config:/app/napcat/config
+      - ${APP_PATH}/plugins:/app/napcat/plugins
+    labels:
+      createdBy: "bt_apps"
+    networks:
+      - baota_net
+
+networks:
+  baota_net:
+    external: true
