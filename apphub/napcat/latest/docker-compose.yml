@@ -2,6 +2,8 @@ services:
   napcat:
     image: mlikiowa/napcat-docker:latest
     restart: always
+    environment:
+      MODE: ws
     deploy:
       resources:
         limits:
